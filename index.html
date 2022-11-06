@@ -1,0 +1,46 @@
+<div ng-app="validationApp" ng-controller="mainController">
+    <div class="container">
+        <div class="row">
+            <h3>Angular Example</h3>
+            <div class="col-sm-6">
+                <!-- FORM ============ -->
+                <form name="userForm" ng-submit="submitForm()" novalidate>
+
+                    <!-- NAME -->
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" ng-model="user.name" required allow-pattern="[a-z]">
+                        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+                    </div>
+
+                    <!-- USERNAME -->
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8" allow-pattern="(\d|[a-z])">
+                        <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                        <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" ng-model="user.email">
+                        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                        <label>Phone</label>
+                        <input type="text" name="phone" class="form-control" ng-model="user.pnone" allow-pattern="\d">
+                        <p ng-show="userForm.phone.$invalid && !userForm.phone.$pristine" class="help-block">Enter onle number.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <!-- VALIDATION TABLES ======== -->
+
+
+            </div>
+        </div>
+        
